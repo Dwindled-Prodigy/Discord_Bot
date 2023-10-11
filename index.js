@@ -447,7 +447,10 @@ client.on('messageCreate', async (message) => {
       '!animeinfo <query> - Provides information about a specific anime.',
       '!animequote - Shares a random anime quote.',
       '!mangarecommend - Recommends a random manga in a specified genre.',
-      '!animesearch <query> - Searches for anime based on a query.');
+      '!animesearch <query> - Searches for anime based on a query.',
+      '!poll - Create a poll.',
+      '!remindme - a simple reminder for specific taskes or events',
+      '!translate - Translates the given text into a specific language.');
       break;
 
     case 'poll':
@@ -467,13 +470,15 @@ client.on('messageCreate', async (message) => {
           }
         });
       break;  
+      
     case 'remindme':
       const time = args[1];
       const reminderMessage = args.slice(2).join(' ');  
       setTimeout(() => {
         message.author.send(`Reminder: ${reminderMessage}`);
       }, ms(time));
-      break;  
+      break; 
+
     case 'translate':
       const targetLanguage = args[1];
       const textToTranslate = args.slice(2).join(' ');  
@@ -502,5 +507,5 @@ client.on('messageCreate', async (message) => {
   }
 });
 
-const TOKEN = 'YOUR_BOT_TOKEN';
+const TOKEN = '******************************************************';
 client.login(TOKEN);
