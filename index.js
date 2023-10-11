@@ -1,7 +1,6 @@
 import dotenv from 'dotenv'
 dotenv.config()
 
-
 const { Client, Intents } = require('discord.js');
 const fetch = require('node-fetch');
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
@@ -470,7 +469,7 @@ client.on('messageCreate', async (message) => {
           }
         });
       break;  
-      
+
     case 'remindme':
       const time = args[1];
       const reminderMessage = args.slice(2).join(' ');  
@@ -507,5 +506,5 @@ client.on('messageCreate', async (message) => {
   }
 });
 
-const TOKEN = '******************************************************';
+const TOKEN = '***********************************************************';
 client.login(TOKEN);
