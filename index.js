@@ -1,18 +1,19 @@
-import dotenv from 'dotenv'
-dotenv.config()
-
-const { Client, Intents } = require('discord.js');
+const { Client, GatewayIntentBits } = require('discord.js');
 const fetch = require('node-fetch');
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
-let botPrefix = '!';
+const client = new Client({ 
+  intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages]
+});
+
+const botPrefix = '!';
+
 
 client.once('ready', () => {
   console.log(`Logged in as ${client.user.tag}`);
 });
 
 client.on('messageCreate', async (message) => {
-  if (message.author.bot) return; // Ignore messages from other bots
+  if (message.author.bot) return;
   if (message.content.startsWith(botPrefix)) {
   const args = message.content.trim().split(/ +/);
   const command = args[0].toLowerCase();
@@ -506,5 +507,5 @@ client.on('messageCreate', async (message) => {
   }
 });
 
-const TOKEN = '***********************************************************';
+const TOKEN = '*';
 client.login(TOKEN);
