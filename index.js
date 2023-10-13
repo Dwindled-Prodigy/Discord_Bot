@@ -5,29 +5,25 @@ const client = new Client({
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages]
 });
 
-const botPrefix = '!';
-
-
 client.once('ready', () => {
   console.log(`Logged in as ${client.user.tag}`);
 });
 
 client.on('messageCreate', async (message) => {
-  if (message.author.bot) return;
-  if (message.content.startsWith(botPrefix)) {
+  if (message.author.bot) return; // Ignore messages from other bots
   const args = message.content.trim().split(/ +/);
   const command = args[0].toLowerCase();
 
   switch (command) {
-    case 'ping':
+    case '!ping':
       message.reply('Pong!');
       break;
 
-    case 'hello':
+    case '!hello':
       message.reply('Hello, Discord World!');
       break;
 
-    case 'random':
+    case '!random':
       try {
          const response = await fetch('https://api.jikan.moe/v3/anime/random');
          const data = await response.json();
@@ -39,7 +35,7 @@ client.on('messageCreate', async (message) => {
       }
       break;
 
-    case 'popular':
+    case '!popular':
       try {
          const response = await fetch('https://api.jikan.moe/v3/top/anime/1/upcoming');
          const data = await response.json();
@@ -51,7 +47,7 @@ client.on('messageCreate', async (message) => {
       }
       break;
 
-    case 'search':
+    case '!search':
       const query = args.slice(1).join(' ');
       if (query) {
         try {
@@ -72,7 +68,7 @@ client.on('messageCreate', async (message) => {
       }
       break;
 
-    case 'shonen':
+    case '!shonen':
       try {
          const response = await fetch('https://api.jikan.moe/v3/genre/anime/27/1');
          const data = await response.json();
@@ -84,7 +80,7 @@ client.on('messageCreate', async (message) => {
       }
       break;
 
-    case 'seinen':
+    case '!seinen':
       try {
          const response = await fetch('https://api.jikan.moe/v3/genre/anime/25/1');
          const data = await response.json();
@@ -96,7 +92,7 @@ client.on('messageCreate', async (message) => {
       }
       break;
 
-    case 'sliceoflife':
+    case '!sliceoflife':
       try {
          const response = await fetch('https://api.jikan.moe/v3/genre/anime/36/1');
          const data = await response.json();
@@ -107,7 +103,7 @@ client.on('messageCreate', async (message) => {
         message.reply('An error occurred while fetching the slice of life anime recommendation.');
       }
       break;
-    case 'action':
+    case '!action':
       try {
          const response = await fetch('https://api.jikan.moe/v3/genre/anime/1/1');
          const data = await response.json();
@@ -119,7 +115,7 @@ client.on('messageCreate', async (message) => {
       }
       break;
 
-    case 'adventure':
+    case '!adventure':
       try {
          const response = await fetch('https://api.jikan.moe/v3/genre/anime/2/1');
          const data = await response.json();
@@ -131,7 +127,7 @@ client.on('messageCreate', async (message) => {
       }
       break;
 
-    case 'fantasy':
+    case '!fantasy':
       try {
          const response = await fetch('https://api.jikan.moe/v3/genre/anime/10/1');
          const data = await response.json();
@@ -142,7 +138,8 @@ client.on('messageCreate', async (message) => {
         message.reply('An error occurred while fetching the fantasy anime recommendation.');
       }
       break;
-    case 'sci-fi':
+          
+    case '!sci-fi':
         try {
           const response = await fetch('https://api.jikan.moe/v3/genre/anime/24/1');
           const data = await response.json();
@@ -154,7 +151,7 @@ client.on('messageCreate', async (message) => {
         }
         break;
       
-    case 'romance':
+    case '!romance':
         try {
           const response = await fetch('https://api.jikan.moe/v3/genre/anime/22/1');
           const data = await response.json();
@@ -166,7 +163,7 @@ client.on('messageCreate', async (message) => {
         }
         break;
       
-    case 'comedy':
+    case '!comedy':
         try {
           const response = await fetch('https://api.jikan.moe/v3/genre/anime/4/1');
           const data = await response.json();
@@ -178,7 +175,7 @@ client.on('messageCreate', async (message) => {
         }
         break;
 
-    case 'horror':
+    case '!horror':
         try {
           const response = await fetch('https://api.jikan.moe/v3/genre/anime/14/1');
           const data = await response.json();
@@ -190,7 +187,7 @@ client.on('messageCreate', async (message) => {
         }
         break;
           
-    case 'mystery':
+    case '!mystery':
         try {
           const response = await fetch('https://api.jikan.moe/v3/genre/anime/7/1');
           const data = await response.json();
@@ -202,7 +199,7 @@ client.on('messageCreate', async (message) => {
         }
         break;
           
-    case 'sports':
+    case '!sports':
         try {
           const response = await fetch('https://api.jikan.moe/v3/genre/anime/30/1');
           const data = await response.json();
@@ -214,7 +211,7 @@ client.on('messageCreate', async (message) => {
         }
         break;
 
-    case 'music':
+    case '!music':
         try {
           const response = await fetch('https://api.jikan.moe/v3/genre/anime/20/1');
           const data = await response.json();
@@ -226,7 +223,7 @@ client.on('messageCreate', async (message) => {
         }
         break;
   
-    case 'historical':
+    case '!historical':
       try {
           const response = await fetch('https://api.jikan.moe/v3/genre/anime/13/1');
           const data = await response.json();
@@ -238,7 +235,7 @@ client.on('messageCreate', async (message) => {
       }
       break;
   
-    case 'harem':
+    case '!harem':
       try {
           const response = await fetch('https://api.jikan.moe/v3/genre/anime/35/1');
           const data = await response.json();
@@ -250,7 +247,7 @@ client.on('messageCreate', async (message) => {
       }
       break;
 
-    case 'isekai':
+    case '!isekai':
       try {
           const response = await fetch('https://api.jikan.moe/v3/genre/anime/33/1');
           const data = await response.json();
@@ -262,7 +259,7 @@ client.on('messageCreate', async (message) => {
       }
       break;
 
-    case 'ecchi':
+    case '!ecchi':
       try {
           const response = await fetch('https://api.jikan.moe/v3/genre/anime/9/1');
           const data = await response.json();
@@ -274,7 +271,7 @@ client.on('messageCreate', async (message) => {
       }
       break;
 
-    case 'shoujo':
+    case '!shoujo':
       try {
           const response = await fetch('https://api.jikan.moe/v3/genre/anime/25/1');
           const data = await response.json();
@@ -286,7 +283,7 @@ client.on('messageCreate', async (message) => {
       }
       break;
 
-    case 'shounenai':
+    case '!shounenai':
       try {
           const response = await fetch('https://api.jikan.moe/v3/genre/anime/26/1');
           const data = await response.json();
@@ -298,7 +295,7 @@ client.on('messageCreate', async (message) => {
       }
       break;
   
-    case 'josei':
+    case '!josei':
         try {
           const response = await fetch('https://api.jikan.moe/v3/genre/anime/42/1');
           const data = await response.json();
@@ -310,7 +307,7 @@ client.on('messageCreate', async (message) => {
         }
         break;
         
-    case 'animeinfo':
+    case '!animeinfo':
         const queryAnimeInfo = args.slice(1).join(' '); // Change the variable name to avoid conflicts
         if (queryAnimeInfo) {
           try {
@@ -331,7 +328,7 @@ client.on('messageCreate', async (message) => {
         }
         break;  
         
-    case 'animequote':
+    case '!animequote':
         const quotes = [
           '“The world isn_t perfect. But it_s there for us, doing the best it can… that_s what makes it so damn beautiful.” — Roy Mustang (Full Metal Alchemist)',
           '“To know sorrow is not terrifying. What is terrifying is to know you can_t go back to happiness you could have.” — Matsumoto Rangiku (Bleach)',
@@ -382,7 +379,7 @@ client.on('messageCreate', async (message) => {
         message.reply(`Here's an anime quote: ${randomQuote}`);
         break;
 
-    case 'mangarecommend':
+    case '!mangarecommend':
       const genres = ['shonen', 'seinen', 'romance', 'fantasy', 'sliceoflife']; // Add more genres as needed
       const randomGenre = genres[Math.floor(Math.random() * genres.length)];
       try {
@@ -396,7 +393,7 @@ client.on('messageCreate', async (message) => {
       }
       break;
         
-    case 'animesearch':
+    case '!animesearch':
       const queryAnimeSearch = args.slice(1).join(' ');
       if (queryAnimeSearch) {
         try {
@@ -417,7 +414,7 @@ client.on('messageCreate', async (message) => {
       }
       break;
      
-    case 'help':
+    case '-help':
       message.reply('Available commands:\n' +
       '!ping - Responds with "Pong!"',
       '!hello - Greets with "Hello, Discord World!"',
@@ -453,7 +450,7 @@ client.on('messageCreate', async (message) => {
       '!translate - Translates the given text into a specific language.');
       break;
 
-    case 'poll':
+    case '!poll':
       const pollEmbed = new Discord.MessageEmbed()
         .setColor('#0099ff')
         .setTitle('Poll')
@@ -471,7 +468,7 @@ client.on('messageCreate', async (message) => {
         });
       break;  
 
-    case 'remindme':
+    case '!remindme':
       const time = args[1];
       const reminderMessage = args.slice(2).join(' ');  
       setTimeout(() => {
@@ -479,7 +476,7 @@ client.on('messageCreate', async (message) => {
       }, ms(time));
       break; 
 
-    case 'translate':
+    case '!translate':
       const targetLanguage = args[1];
       const textToTranslate = args.slice(2).join(' ');  
       translate(textToTranslate, { to: targetLanguage })
@@ -504,7 +501,6 @@ client.on('messageCreate', async (message) => {
       message.reply('Invalid command. Type !help for a list of available commands.');// Handle unknown or invalid commands
       break;
     }
-  }
 });
 
 const TOKEN = '*';
